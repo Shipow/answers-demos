@@ -31,8 +31,17 @@
     "stylus": "^0.54.5"
   },
   "dependencies": {
+    "@algolia/autocomplete-js": "https://pkg.csb.dev/algolia/autocomplete.js/commit/f945a87e/@algolia/autocomplete-js",
+    "@algolia/autocomplete-plugin-algolia-insights": "https://pkg.csb.dev/algolia/autocomplete.js/commit/f945a87e/@algolia/autocomplete-plugin-algolia-insights",
+    "@algolia/autocomplete-plugin-query-suggestions": "https://pkg.csb.dev/algolia/autocomplete.js/commit/f945a87e/@algolia/autocomplete-plugin-query-suggestions",
+    "@algolia/autocomplete-plugin-recent-searches": "https://pkg.csb.dev/algolia/autocomplete.js/commit/f945a87e/@algolia/autocomplete-plugin-recent-searches",
+    "@algolia/autocomplete-preset-algolia": "https://pkg.csb.dev/algolia/autocomplete.js/commit/f945a87e/@algolia/autocomplete-preset-algolia",
+    "@algolia/autocomplete-theme-classic": "https://pkg.csb.dev/algolia/autocomplete.js/commit/f945a87e/@algolia/autocomplete-theme-classic",
+    "@algolia/client-search": "4.8.3",
+    "algoliasearch": "4.8.3",
     "preact": "^10.2.1",
-    "preact-compat": "3.19.0"
+    "preact-compat": "3.19.0",
+    "react-instantsearch-dom": "6.9.0"
   },
   "jest": {
     "verbose": true,

@@ -1,0 +1,122 @@
+.chat-container {
+  display: grid;
+  grid-template-columns: 32rem;
+  grid-template-rows: [first] 5.7rem [header-end2] 2.8rem [qsl-top] 28.4rem [qsl-end] 6.3rem [sb-top] 4.8rem [sb-end];
+}
+
+header {
+  height: 13.5rem;
+  display: grid;
+  grid-template-columns: 29.2rem 2.4rem 0.4rem;
+  grid-template-rows: [cross-top] 3.495rem [logo-top] 2.199rem;
+  background: var(--color-primary);
+  border-radius: 5px 5px 0 0;
+  transition: 0.2s ease-out;
+  
+  .has-response & {
+    /* Looks at the parent to define styling */
+    height: 5.7rem !important;
+    grid-template-rows: [cross-top] 2rem [logo-top] 2.199rem !important;
+  }
+
+  .cross {
+    grid-row-start: cross-top;
+    grid-column-start: 2;
+
+    width: 2.5rem;
+    height: 2.5rem;
+
+    display: flex;
+    justify-content: center;
+    margin-top: 0.4rem;
+
+    border-radius: 100%;
+    transition: background-color 0.3s ease;
+
+    img {
+      filter: invert(100%) sepia(100%) saturate(0%) hue-rotate(288deg)
+        brightness(102%) contrast(102%);
+    }
+  }
+
+  .cross:hover {
+    background-color: rgba(0, 0, 0, 0.35);
+  }
+
+  .logo-container {
+    grid-row-start: logo-top;
+    grid-column-start: 1;
+    grid-column-end: 3;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: row;
+
+    transition: 0.2s ease-out;
+
+    font-family: "Ubuntu", sans-serif;
+    font-size: 1.8rem;
+
+    color: #ffffff;
+
+    span {
+      line-height: 2.3rem;
+    }
+
+    .company-logo {
+      height: 2.199rem;
+      margin-right: 0.8rem;
+    }
+  }
+}
+
+.ais-SearchBox {
+  grid-row-start: sb-top;
+
+  display: flex;
+  align-items: center;
+  padding: 0.5rem;
+
+  background: #ffffff;
+  box-shadow: 0px 16px 32px rgba(55, 58, 80, 0.1),
+    0px 8px 16px rgba(55, 58, 80, 0.1), 0px 4px 8px rgba(55, 58, 80, 0.1),
+    0px 2px 4px rgba(55, 58, 80, 0.1), 0px 1px 2px rgba(55, 58, 80, 0.1);
+  border-radius: 4px;
+
+  .ais-SearchBox-form {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    .ais-SearchBox-input {
+      width: 100%;
+      margin: 0.5rem;
+
+      font-family: "Work Sans", sans-serif;
+      font-weight: 400;
+      font-size: 1.6rem;
+      line-height: 1.9rem;
+      color: #888ba3;
+
+      border-style: none;
+      outline: none;
+    }
+
+    .ais-SearchBox-submit {
+      width: 3.2rem;
+      height: 3.2rem;
+      padding: 0.5rem;
+      margin: 0.2rem;
+
+      background: var(--color-primary);
+      border-radius: 0.2rem;
+      border-style: none;
+    }
+
+    .ais-SearchBox-reset {
+      display: none;
+    }
+  }
+}
