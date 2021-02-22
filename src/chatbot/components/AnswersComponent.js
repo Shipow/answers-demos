@@ -4,7 +4,7 @@ import { Component } from "preact";
 
 function AnswersfeedbackButton(props) {
   return (
-    <button className="ais-Answers-feedback-button" onClick={props.onClick}>
+    <button {...this.props} onClick={props.onClick}>
       {props.text}
     </button>
   );
@@ -24,24 +24,22 @@ class Answersfeedback extends Component {
   }
 
   render() {
+    if (this.state.submitted) {
+      return "";
+    }
     return (
-      <div
-        className={`ais-Answers-feedback ${
-          this.state.submitted ? "ais-Answers-feedback--hide" : ""
-        }`}
-      >
-        <div className={"ais-Answers-feedback--text"}>
-          Did this answer your question?
-          <AnswersfeedbackButton
-            text="Yes"
-            onClick={(text) => this.sendFeedback(text)}
-          />
-          -
-          <AnswersfeedbackButton
-            text="No"
-            onClick={(text) => this.sendFeedback(text)}
-          />
-        </div>
+      <div class="p-8 text-sm text-gray-600">
+        Did this answer your question?
+        <AnswersfeedbackButton
+          class="py-1 px-2 bg-green-500 text-white rounded m-2"
+          text="Yes"
+          onClick={(text) => this.sendFeedback(text)}
+        />
+        <AnswersfeedbackButton
+          class="py-1 px-2 bg-red-500 text-white rounded"
+          text="No"
+          onClick={(text) => this.sendFeedback(text)}
+        />
       </div>
     );
   }
@@ -54,31 +52,30 @@ function createAnswersComponent(query) {
     }
     return (
       <div
-        className={`ais-Answers my-Answers ${
+        class={`ais-Answers my-Answers ${
           isLoading ? "ais-Answers--empty" : ""
         }`}
       >
-        <div className="ais-Answers--scroll">
-          <div className="results-description-container">
-            <h2>Answers results</h2>
-            Check out our Q&A search 👇
+        <div class="p-8">
+          <div class="text-sm text-gray-700 pb-6">
+            Answers results. Check out our Q&A search
           </div>
 
           {isLoading && (
-            <div className="ais-Answers-loader">
+            <div class="">
               <img src={typing} alt="Loading" />
             </div>
           )}
 
           {!isLoading && (
-            <ul className="ais-Answers-list">
+            <ul>
               {(hits || []).map((hit, index) => (
-                <li className="ais-Answers-item" key={index}>
-                  <h2 className="one-line">
+                <li class="bg-white p-4 mb-2 rounded" key={index}>
+                  <h2 class="text-md font-bold text-indigo-500">
                     {hit[config.responseHeadAttribute]}
                   </h2>
                   <p
-                    className="description four-lines"
+                    class="text-gray-600"
                     dangerouslySetInnerHTML={{ __html: hit._answer.extract }}
                   ></p>
                 </li>

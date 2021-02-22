@@ -7,16 +7,12 @@ import {
   SearchBox
 } from "react-instantsearch-dom";
 
+import { Icon, Logo } from "/src/shared/icons";
 import config from "../config";
-import companyPNG from "../img/company.png";
-import companySVG from "../img/company.svg";
-import cross from "../img/cross.svg";
-import send from "../img/send.svg";
-import "./Answers.scss";
+
 import createAnswersComponent from "./AnswersComponent";
-import "./App.scss";
+import "./Chatbot.scss";
 import QuestionSuggestionList from "./QuestionSuggestionList";
-import "./QuestionSuggestionList.scss";
 
 const searchClient = algoliasearch(config.appId, config.apiKey);
 
@@ -54,7 +50,7 @@ class Chatbot extends Component {
     if (this.state.opened === false) {
       return (
         <button
-          class="rounded-full h-16 w-16 bg-indigo-700 text-white block"
+          class="rounded-full h-16 w-16 bg-indigo-700 text-white block flex items-center justify-center"
           onClick={this.openChat.bind(this)}
         >
           Chat
@@ -63,23 +59,21 @@ class Chatbot extends Component {
     } else {
       return (
         <div
-          className={`chat-container ${this.state.query ? "has-response" : ""}`}
+          style={{ width: "500px", height: "600px" }}
+          class={`relative bg-gray-200 shadow-xl overflow-hidden rounded ${
+            this.state.query ? "has-response" : ""
+          }`}
         >
-          <header>
+          <header class="h-20 bg-indigo-500 flex items-center">
             <button
-              className="cross"
+              class="absolute top-2 right-2"
               aria-label="Close the chat"
               onClick={this.closeChat.bind(this)}
             >
-              <img src={cross} alt="Cross" />
+              <Icon class="text-white" icon="cross" />
             </button>
-            <div className="logo-container">
-              <img
-                className="company-logo"
-                src={config.logoFormat === "svg" ? companySVG : companyPNG}
-                alt="Company logo"
-              />
-              <span> answers </span>
+            <div class="m-auto w-3/6">
+              <Icon class="h-8 w-full" icon="algolia" />
             </div>
           </header>
           <QuestionSuggestionList
@@ -110,7 +104,7 @@ class Chatbot extends Component {
               translations={{
                 placeholder: "Type your message"
               }}
-              submit={<img src={send} alt="Send" />}
+              submit={<Icon icon="send" />}
               searchAsYouType={false}
               showLoadingIndicator={false}
             />

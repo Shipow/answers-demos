@@ -1,0 +1,38 @@
+.ais-SearchBox {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  background: white;
+  display: flex;
+  align-items: center;
+  padding: 0.2em 1em;
+  box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+
+  .ais-SearchBox-form {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    .ais-SearchBox-input {
+      width: 100%;
+      margin: 0.5rem;
+      color: #888ba3;
+      border-style: none;
+      outline: none;
+    }
+
+    .ais-SearchBox-submit {
+      width: 3.2rem;
+      height: 3.2rem;
+      padding: 0.5rem;
+      margin: 0.2rem;
+      border-radius: 0.2rem;
+      border-style: none;
+    }
+
+    .ais-SearchBox-reset {
+      display: none;
+    }
+  }
+}
