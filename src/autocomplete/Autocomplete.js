@@ -114,6 +114,38 @@ function Autocomplete() {
         },
         {
           // ----------------
+          // Algolia Docs Topics
+          // ----------------
+          sourceId: "algoliaDocsFacets",
+          getItemInputValue: ({ state }) => state.query,
+          getItems({ query }) {
+            return algoliaDocsSearchClient
+              .initIndex("documentation_production")
+              .searchForFacetValues("category", query, {
+                maxFacetHits: 5
+              })
+              .then(({ facetHits }) => {
+                return facetHits;
+              });
+          },
+          templates: {
+            header({ items }) {
+              return headerLayout({
+                items,
+                sourceTitle: "Algolia Topics"
+              });
+            },
+            item({ item }) {
+              return hitLayoutSmart(item, {
+                main: item.value,
+                extra: item.count,
+                icon: "fas fa-tag"
+              });
+            }
+          }
+        },
+        {
+          // ----------------
           // Algolia Website
           // ----------------
           sourceId: "algoliaWebsite",

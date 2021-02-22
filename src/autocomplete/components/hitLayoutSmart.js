@@ -14,7 +14,7 @@ export function hitLayoutSmart(
   return (
     <Fragment>
       {icon ? <div class="aa-ItemIcon">{icon}</div> : ""}
-      <div class="aa-ItemContent aa-ItemContent--dual">
+      <div class="aa-ItemContent">
         <span class="aa-ItemContentTitle">{main}</span>
         {typeof extra === "string" ? (
           <span class="aa-ItemContentSubtitle">{extra}</span>

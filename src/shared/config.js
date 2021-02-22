@@ -1,4 +1,14 @@
 export default {
+  experienceDemo: {
+    autocomplete: true,
+    formDeflect: true,
+    chatBot: true
+  },
+
+  topics: ["test"],
+
+  branding: {},
+
   // answers algolia docs
   algoliaAnswers: {
     appId: "B1G2GM9NG0",

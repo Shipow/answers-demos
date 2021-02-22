@@ -1,23 +1,6 @@
 import config from "./config";
 
-export function searchFAQ(query, callback) {
-  const data = { query, filters: "type:faq", hitsPerPage: 2 };
-  const URL = `https://${config.algoliaDocs.appId}-2.algolia.net/1/indexes/${config.algoliaDocs.indexName}/query`;
-
-  fetch(URL, {
-    method: "POST",
-    headers: {
-      "X-Algolia-Application-Id": config.algoliaDocs.appId,
-      "X-Algolia-API-Key": config.algoliaDocs.apiKey
-    },
-    body: JSON.stringify(data)
-  })
-    .then((response) => response.json())
-    .then((res) => callback(res.hits))
-    .catch(console.error);
-}
-
-export function callNluEngine(query, callback) {
+function callNluEngine(query, callback) {
   const data = qaParams(query);
   const URL = `https://${config.algoliaAnswers.appId}-2.algolia.net/1/answers/${config.algoliaAnswers.indexName}/prediction`;
 
@@ -34,7 +17,7 @@ export function callNluEngine(query, callback) {
     .catch(console.error);
 }
 
-export function qaParams(query) {
+function qaParams(query) {
   return {
     query: query,
     attributesForPrediction: ["page_title", "title", "description"],
@@ -49,7 +32,7 @@ export function qaParams(query) {
   };
 }
 
-export function debounce(fn, time) {
+function debounce(fn, time) {
   var timerId = undefined;
   return function () {
     var args = [];
@@ -63,6 +46,23 @@ export function debounce(fn, time) {
       return fn.apply(void 0, args);
     }, time);
   };
+}
+
+export function searchFAQ(query, callback) {
+  const data = { query, filters: "type:faq", hitsPerPage: 2 };
+  const URL = `https://${config.algoliaDocs.appId}-2.algolia.net/1/indexes/${config.algoliaDocs.indexName}/query`;
+
+  fetch(URL, {
+    method: "POST",
+    headers: {
+      "X-Algolia-Application-Id": config.algoliaDocs.appId,
+      "X-Algolia-API-Key": config.algoliaDocs.apiKey
+    },
+    body: JSON.stringify(data)
+  })
+    .then((response) => response.json())
+    .then((res) => callback(res.hits))
+    .catch(console.error);
 }
 
 export const debounceGetAnswers = debounce(callNluEngine, 400);
