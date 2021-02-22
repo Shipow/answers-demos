@@ -132,13 +132,12 @@ function Autocomplete() {
             header({ items }) {
               return headerLayout({
                 items,
-                sourceTitle: "Algolia Topics"
+                sourceTitle: "Algolia Help Topics"
               });
             },
             item({ item }) {
               return hitLayoutSmart(item, {
                 main: item.value,
-                extra: item.count,
                 icon: "fas fa-tag"
               });
             }

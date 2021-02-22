@@ -1,3 +1,4 @@
+import algoliasearch from "algoliasearch/lite";
 import config from "./config";
 
 function callNluEngine(query, callback) {
@@ -48,20 +49,24 @@ function debounce(fn, time) {
   };
 }
 
-export function searchFAQ(query, callback) {
-  const data = { query, filters: "type:faq", hitsPerPage: 2 };
-  const URL = `https://${config.algoliaDocs.appId}-2.algolia.net/1/indexes/${config.algoliaDocs.indexName}/query`;
-
-  fetch(URL, {
-    method: "POST",
-    headers: {
-      "X-Algolia-Application-Id": config.algoliaDocs.appId,
-      "X-Algolia-API-Key": config.algoliaDocs.apiKey
-    },
-    body: JSON.stringify(data)
-  })
-    .then((response) => response.json())
+export function searchFAQ(topic, callback) {
+  algoliasearch(config.algoliaDocs.appId, config.algoliaDocs.apiKey)
+    .initIndex("documentation_production")
+    .search("", {
+      filters: `category:"${topic}"`,
+      hitsPerPage: 2
+    })
     .then((res) => callback(res.hits))
+    .catch(console.error);
+}
+
+export function searchTopics(query, callback) {
+  algoliasearch(config.algoliaDocs.appId, config.algoliaDocs.apiKey)
+    .initIndex("documentation_production")
+    .searchForFacetValues("category", query, {
+      maxFacetHits: 12
+    })
+    .then((res) => callback(res.facetHits))
     .catch(console.error);
 }
 

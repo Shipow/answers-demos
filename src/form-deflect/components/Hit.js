@@ -1,8 +1,6 @@
 export function Hit(result, answers) {
   const helpfulAnswer = (e) => {
     e.preventDefault();
-    const { value } = e.target;
-    console.log(value);
   };
   return (
     <div class="mb-4">
@@ -10,7 +8,7 @@ export function Hit(result, answers) {
         {result.content_structure.lvl0} &gt; {result.content_structure.lvl1}
       </div>
       <a
-        class="leading-6 font-bold text-indigo-500"
+        class="leading-6 font-medium text-indigo-500"
         href={"https://algolia.com" + result.url}
         target="_blank"
         rel="noreferrer"
@@ -29,7 +27,7 @@ export function Hit(result, answers) {
         </svg>
       </a>
 
-      <p class="text-gray-600 overflow-hidden max-h-12 overflow-ellipsis">
+      <p class="text-sm text-gray-600 overflow-hidden max-h-10 overflow-ellipsis">
         {result.description}
       </p>
       {answers[0] && answers ? (
