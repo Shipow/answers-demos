@@ -1,12 +1,14 @@
 import { Component } from "preact";
 
 export class Topics extends Component {
-  openSearch(e) {
-    return "";
+  constructor(props) {
+    super(props);
+    this.searchTopic = this.props.onSearchTopic;
   }
+
   render() {
     return (
-      <div {...this.props}>
+      <div class={this.props.class}>
         <div class="text-sm bg-gray-100 rounded p-4">
           <div class="font-bold mb-2">Popular Topics</div>
           {this.props.topics &&
@@ -15,7 +17,12 @@ export class Topics extends Component {
                 <button
                   type="button"
                   class="text-indigo-500"
-                  onClick={this.openSearch(topic.value)}
+                  value={topic.value}
+                  onClick={(e) => {
+                    e.preventDefault();
+                    const { value } = e.target;
+                    this.searchTopic(value);
+                  }}
                 >
                   {topic.value}
                 </button>

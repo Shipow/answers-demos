@@ -114,7 +114,7 @@ function Autocomplete() {
         },
         {
           // ----------------
-          // Algolia Docs Topics
+          // Algolia Docs Category
           // ----------------
           sourceId: "algoliaDocsFacets",
           getItemInputValue: ({ state }) => state.query,
@@ -219,6 +219,7 @@ function Autocomplete() {
       ];
     }
   });
+  return search;
 }
 
 export default Autocomplete;

@@ -10,6 +10,11 @@ import "./shared/index.scss";
 //import config from "./shared/config";
 
 export default class App extends Component {
+  constructor(props) {
+    super(props);
+    this.onSearchTopic = this.onSearchTopic.bind(this);
+  }
+
   componentDidMount() {
     searchTopics("", (topics) => {
       this.setState({
@@ -22,6 +27,17 @@ export default class App extends Component {
           results
         });
       });
+    });
+  }
+
+  onSearchTopic(topic) {
+    search.setQuery(topic);
+    search.setIsOpen();
+    search.refresh();
+    // TODO: make it happen with initialState
+    document.querySelector(".aa-DetachedSearchButton").click();
+    this.setState({
+      topic
     });
   }
 
@@ -159,7 +175,11 @@ export default class App extends Component {
                       </div>
                     </div>
                   </div>
-                  <Topics topics={this.state.topics} class="m-2" />
+                  <Topics
+                    topics={this.state.topics}
+                    onSearchTopic={this.onSearchTopic}
+                    class="m-2"
+                  />
                 </div>
                 <div class="flex w-full items-center border-t-2 bg-gray-100 p-4">
                   <div class="flex-1 text-gray-400">
@@ -185,7 +205,5 @@ export default class App extends Component {
   }
 }
 
-if (typeof window !== "undefined") {
-  render(<App />, document.getElementById("root"));
-  Autocomplete();
-}
+render(<App />, document.getElementById("root"));
+const search = Autocomplete();
