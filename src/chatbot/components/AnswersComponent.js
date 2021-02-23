@@ -71,11 +71,11 @@ function createAnswersComponent(query) {
             <ul>
               {(hits || []).map((hit, index) => (
                 <li class="bg-white p-4 mb-2 rounded" key={index}>
-                  <h2 class="text-md font-bold text-indigo-500">
+                  <h2 class="text-md font-medium text-indigo-500">
                     {hit[config.responseHeadAttribute]}
                   </h2>
                   <p
-                    class="text-gray-600"
+                    class="text-sm text-gray-600"
                     dangerouslySetInnerHTML={{ __html: hit._answer.extract }}
                   ></p>
                 </li>

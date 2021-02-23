@@ -20,12 +20,10 @@ export default class App extends Component {
       this.setState({
         topics
       });
-      searchFAQ(topics, (results) => {
-        const topic = topics[0].value;
-        this.setState({
-          topic,
-          results
-        });
+    });
+    searchFAQ("faq", (results) => {
+      this.setState({
+        results
       });
     });
   }
@@ -61,7 +59,7 @@ export default class App extends Component {
     e.preventDefault();
   };
 
-  render(props, { query, results = [], answers = [] }) {
+  render(props, { topic, query, results = [], answers = [], topics = [] }) {
     return (
       <div class="bg-gray-100 fixed top-0 right-0 left-0 bottom-0 h-full">
         <div class="w-full h-16 bg-white border-b border-gray-300 flex items-center">
@@ -109,16 +107,15 @@ export default class App extends Component {
                           id="topic"
                           name="topic"
                           class="py-3 px-4 block w-full shadow-sm border rounded-md"
-                          value={this.state.topic}
+                          value={topic}
                           onChange={this.onTopic}
                         >
-                          {this.state.topics &&
-                            this.state.topics.map((topic) => {
-                              return (
-                                <option value={topic.value}>
-                                  {topic.value}
-                                </option>
-                              );
+                          <option disabled selected value>
+                            -- Select a topic --
+                          </option>
+                          {topics &&
+                            topics.map((t) => {
+                              return <option value={t.value}>{t.value}</option>;
                             })}
                         </select>
                       </div>
@@ -150,7 +147,7 @@ export default class App extends Component {
                       >
                         {answers[0] && answers
                           ? "Before you email, do these answer your question?"
-                          : `Frequently Asked Questions for ${this.state.topic}`}
+                          : "Frequently Asked Questions"}
                       </label>
 
                       {((answers[0] && answers) || results).map((result) => {
@@ -176,7 +173,7 @@ export default class App extends Component {
                     </div>
                   </div>
                   <Topics
-                    topics={this.state.topics}
+                    topics={topics}
                     onSearchTopic={this.onSearchTopic}
                     class="m-2"
                   />

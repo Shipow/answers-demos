@@ -50,10 +50,17 @@ function debounce(fn, time) {
 }
 
 export function searchFAQ(topic, callback) {
+  let filters = "";
+  if (topic === "faq") {
+    filters = `type:faq`;
+  } else {
+    filters = `category:"${topic}"`;
+  }
+
   algoliasearch(config.algoliaDocs.appId, config.algoliaDocs.apiKey)
     .initIndex("documentation_production")
     .search("", {
-      filters: `category:"${topic}"`,
+      filters,
       hitsPerPage: 2
     })
     .then((res) => callback(res.hits))

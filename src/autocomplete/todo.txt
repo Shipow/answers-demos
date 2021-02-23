@@ -1,3 +1,4 @@
+use autocomplete as a comoponent
 add answers plugin
 figure out keyboard first item selected
 placeholder animation
