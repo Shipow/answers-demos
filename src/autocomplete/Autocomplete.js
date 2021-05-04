@@ -7,6 +7,7 @@ import { debounceGetAnswers } from "../shared/answers";
 
 import headerLayout from "./components/headerLayout";
 import hitLayoutSmart from "./components/hitLayoutSmart";
+import { getAlgoliaResults } from "@algolia/autocomplete-preset-algolia";
 
 // docs
 const algoliaDocsSearchClient = algoliasearch(
@@ -79,7 +80,7 @@ function Autocomplete() {
           sourceId: "algoliaDocs",
           getItemInputValue: ({ state }) => state.query,
           getItems({ query }) {
-            return getAlgoliaHits({
+            return getAlgoliaResults({
               searchClient: algoliaDocsSearchClient,
               queries: [
                 {
@@ -150,7 +151,7 @@ function Autocomplete() {
           sourceId: "algoliaWebsite",
           getItemInputValue: ({ state }) => state.query,
           getItems({ query }) {
-            return getAlgoliaHits({
+            return getAlgoliaResults({
               searchClient: algoliaWebsiteSearchClient,
               queries: [
                 {
@@ -188,7 +189,7 @@ function Autocomplete() {
             `https://github.com/${item.owner}/${item.repo}/issues/${item.number}`,
           getItemInputValue: ({ state }) => state.query,
           getItems({ query }) {
-            return getAlgoliaHits({
+            return getAlgoliaResults({
               searchClient: stackoverflowAlgoliaSearchClient,
               queries: [
                 {

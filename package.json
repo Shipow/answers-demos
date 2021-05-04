@@ -15,9 +15,7 @@
   "eslintConfig": {
     "extends": "eslint-config-synacor"
   },
-  "eslintIgnore": [
-    "build/*"
-  ],
+  "eslintIgnore": ["build/*"],
   "devDependencies": {
     "eslint-config-synacor": "^1.1.0",
     "eslint": "^4.5.0",
@@ -31,10 +29,10 @@
     "stylus": "^0.54.5"
   },
   "dependencies": {
-    "@algolia/autocomplete-js": "https://pkg.csb.dev/algolia/autocomplete.js/commit/f945a87e/@algolia/autocomplete-js",
-    "@algolia/autocomplete-plugin-algolia-insights": "https://pkg.csb.dev/algolia/autocomplete.js/commit/f945a87e/@algolia/autocomplete-plugin-algolia-insights",
-    "@algolia/autocomplete-preset-algolia": "https://pkg.csb.dev/algolia/autocomplete.js/commit/f945a87e/@algolia/autocomplete-preset-algolia",
-    "@algolia/autocomplete-theme-classic": "https://pkg.csb.dev/algolia/autocomplete.js/commit/f945a87e/@algolia/autocomplete-theme-classic",
+    "@algolia/autocomplete-js": "^1.0.0",
+    "@algolia/autocomplete-plugin-algolia-insights": "^1.0.0",
+    "@algolia/autocomplete-preset-algolia": "^1.0.0",
+    "@algolia/autocomplete-theme-classic": "^1.0.0",
     "@algolia/client-search": "4.8.3",
     "algoliasearch": "4.8.3",
     "preact": "^10.2.1",
@@ -43,17 +41,10 @@
   },
   "jest": {
     "verbose": true,
-    "setupFiles": [
-      "<rootDir>/src/tests/__mocks__/browserMocks.js"
-    ],
+    "setupFiles": ["<rootDir>/src/tests/__mocks__/browserMocks.js"],
     "testURL": "http://localhost:8080",
-    "moduleFileExtensions": [
-      "js",
-      "jsx"
-    ],
-    "moduleDirectories": [
-      "node_modules"
-    ],
+    "moduleFileExtensions": ["js", "jsx"],
+    "moduleDirectories": ["node_modules"],
     "moduleNameMapper": {
       "\\.(jpg|jpeg|png|gif|eot|otf|webp|svg|ttf|woff|woff2|mp4|webm|wav|mp3|m4a|aac|oga)$": "<rootDir>/src/tests/__mocks__/fileMock.js",
       "\\.(css|less|scss)$": "identity-obj-proxy",
@@ -65,9 +56,6 @@
       "^react-addons-css-transition-group$": "preact-css-transition-group"
     }
   },
-  "keywords": [
-    "preact",
-    "starter"
-  ],
+  "keywords": ["preact", "starter"],
   "description": "Preact example starter project"
 }
